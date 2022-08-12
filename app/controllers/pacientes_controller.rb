@@ -22,7 +22,9 @@ class PacientesController < ApplicationController
   # POST /pacientes or /pacientes.json
   def create
     @paciente = Paciente.new(paciente_params)
+    @paciente.address = Address.new(paciente_params[:address_attributes])
 
+      Endereco.new(estudante_params[:endereco_attributes])
     respond_to do |format|
       if @paciente.save
         format.html { redirect_to paciente_url(@paciente), notice: "Paciente was successfully created." }
@@ -65,6 +67,7 @@ class PacientesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def paciente_params
-      params.require(:paciente).permit(:name, :birthday, :cpf, :email)
+      params.require(:paciente).permit(:name, :birthday, :cpf, :email,address_attributes: [:CEP, :city, :neighborhood, :street, :complement ] )
+      
     end
 end
