@@ -13,6 +13,7 @@ class PacientesController < ApplicationController
   # GET /pacientes/new
   def new
     @paciente = Paciente.new
+    @paciente.build_address
   end
 
   # GET /pacientes/1/edit
@@ -22,12 +23,11 @@ class PacientesController < ApplicationController
   # POST /pacientes or /pacientes.json
   def create
     @paciente = Paciente.new(paciente_params)
-    @paciente.address = Address.new(paciente_params[:address_attributes])
 
-      Endereco.new(estudante_params[:endereco_attributes])
     respond_to do |format|
       if @paciente.save
-        format.html { redirect_to paciente_url(@paciente), notice: "Paciente was successfully created." }
+        #format.html { redirect_to paciente_url(@paciente), notice: "Paciente was successfully created." }
+        format.html { redirect_to new_paciente_address_path(@paciente.id), notice: "Paciente was successfully created." }
         format.json { render :show, status: :created, location: @paciente }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,6 +41,8 @@ class PacientesController < ApplicationController
     respond_to do |format|
       if @paciente.update(paciente_params)
         format.html { redirect_to paciente_url(@paciente), notice: "Paciente was successfully updated." }
+
+
         format.json { render :show, status: :ok, location: @paciente }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -67,7 +69,7 @@ class PacientesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def paciente_params
-      params.require(:paciente).permit(:name, :birthday, :cpf, :email,address_attributes: [:CEP, :city, :neighborhood, :street, :complement ] )
-      
+      #params.require(:paciente).permit(:name, :birthday, :cpf, :email,address_attributes: [:CEP, :city, :neighborhood, :street, :complement ] )
+      params.require(:paciente).permit(:name, :birthday, :cpf, :email)
     end
 end
