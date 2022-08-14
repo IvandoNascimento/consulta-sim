@@ -19,4 +19,41 @@
     <%= paciente.email %>
   </p>
 
+  <%if paciente.address != nil  %>
+    <div id="<%= dom_id paciente.address %>">
+      <p>
+        <strong>Cep:</strong>
+        <%= paciente.address.CEP %>
+      </p>
+
+      <p>
+        <strong>City:</strong>
+        <%= paciente.address.city %>
+      </p>
+
+      <p>
+        <strong>Neighborhood:</strong>
+        <%= paciente.address.neighborhood %>
+      </p>
+
+      <p>
+        <strong>Street:</strong>
+        <%= paciente.address.street %>
+      </p>
+
+      <p>
+        <strong>Complement:</strong>
+        <%= paciente.address.complement %>
+      </p>
+
+
+    </div>
+    <% else %>
+      <p>
+        <strong>Paciente without an Address</strong>
+
+      </p>
+    <% end %>
+
+
 </div>

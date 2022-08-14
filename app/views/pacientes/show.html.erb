@@ -4,7 +4,14 @@
 
 <div>
   <%= link_to "Edit this paciente", edit_paciente_path(@paciente) %> |
-  <%= link_to "Back to pacientes", pacientes_path %>
-
+  <%= link_to "Back to pacientes", pacientes_path %> |
   <%= button_to "Destroy this paciente", @paciente, method: :delete %>
+  <% if @paciente.address != nil %>
+    <%= link_to "Edit this address", edit_paciente_address_path(@paciente.address.id) %> |
+
+    <%= button_to "Destroy this address", @address , method: :delete %>
+
+  <% else %>
+    <% link_to "Set address ", new_paciente_address_path(@paciente.id) %>
+   <% end %>
 </div>

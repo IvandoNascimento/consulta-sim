@@ -2,6 +2,7 @@
 
 <h1>Pacientes</h1>
 
+<%= link_to "New paciente", new_paciente_path %>
 <div id="pacientes">
   <% @pacientes.each do |paciente| %>
     <%= render paciente %>
@@ -11,4 +12,4 @@
   <% end %>
 </div>
 
-<%= link_to "New paciente", new_paciente_path %>
+
