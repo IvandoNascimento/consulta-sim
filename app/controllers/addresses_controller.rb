@@ -12,6 +12,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
+    @test = Paciente.find_by_id(params[:paciente_id])
     @address = Address.new
   end
 
@@ -21,11 +22,13 @@ class AddressesController < ApplicationController
 
   # POST /addresses or /addresses.json
   def create
-    @address = Address.new(address_params)
+    @paciente = Paciente.find_by_id(params[:paciente_id])
+    @paciente.address = Address.new(address_params)
 
     respond_to do |format|
-      if @address.save
-        format.html { redirect_to address_url(@address), notice: "Address was successfully created." }
+      if @paciente.address.save
+        format.html { redirect_to paciente_url(@paciente.id), notice: "Address was successfully created." }
+        #format.html { redirect_to paciente_addresses_url(@address), notice: "Address was successfully created." }
         format.json { render :show, status: :created, location: @address }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to address_url(@address), notice: "Address was successfully updated." }
+        format.html { redirect_to paciente_url(@address.paciente_id), notice: "Address was successfully updated." }
         format.json { render :show, status: :ok, location: @address }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +55,7 @@ class AddressesController < ApplicationController
     @address.destroy
 
     respond_to do |format|
-      format.html { redirect_to addresses_url, notice: "Address was successfully destroyed." }
+      format.html { redirect_to paciente_url, notice: "Address was successfully destroyed." }
       format.json { head :no_content }
     end
   end
