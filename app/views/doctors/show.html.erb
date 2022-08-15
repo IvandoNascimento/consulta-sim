@@ -2,6 +2,18 @@
 
 <%= render @doctor %>
 
+<h4>Your schedule</h4>
+
+<div id="appointments" class="d-flex justify-content align-items-center">
+  <% @appointments.each do |appointment| %>
+    <div class="m-2" style="min-width: 100px; border-style:dotted">
+      <%= render appointment %>
+    </div>
+
+
+  <% end %>
+</div>
+
 <div>
   <%= link_to "Edit this doctor", edit_doctor_path(@doctor) %> |
   <%= link_to "Back to doctors", doctors_path %>
