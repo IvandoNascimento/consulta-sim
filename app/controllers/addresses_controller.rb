@@ -12,6 +12,7 @@ class AddressesController < ApplicationController
 
   # GET /addresses/new
   def new
+    @paciente_id = params[:data]
     @test = Paciente.find_by_id(params[:paciente_id])
     @address = Address.new
   end
@@ -28,7 +29,7 @@ class AddressesController < ApplicationController
     respond_to do |format|
       if @paciente.address.save
         format.html { redirect_to paciente_url(@paciente.id), notice: "Address was successfully created." }
-        #format.html { redirect_to paciente_addresses_url(@address), notice: "Address was successfully created." }
+
         format.json { render :show, status: :created, location: @address }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,8 +53,10 @@ class AddressesController < ApplicationController
 
   # DELETE /addresses/1 or /addresses/1.json
   def destroy
+    #@paciente = Paciente.find_by_id(@address.paciente_id)
+    #@paciente.address_attributes = {id: @address.id, _destroy: ''}
+    #@paciente.save
     @address.destroy
-
     respond_to do |format|
       format.html { redirect_to paciente_url, notice: "Address was successfully destroyed." }
       format.json { head :no_content }
