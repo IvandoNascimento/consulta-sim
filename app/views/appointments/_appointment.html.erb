@@ -8,15 +8,15 @@
     <strong>Time:</strong>
     <%= appointment.time %>
   </p>
+  <% if @doctor && @paciente != nil %>
+    <p>
+      <strong>Doctor:</strong>
+      <%= @doctor.name %>
+    </p>
 
-  <p>
-    <strong>Doctor:</strong>
-    <%= appointment.doctor_id %>
-  </p>
-
-  <p>
-    <strong>Paciente:</strong>
-    <%= appointment.paciente_id %>
-  </p>
-
+    <p>
+      <strong>Paciente:</strong>
+      <%= @paciente.name %>
+    </p>
+  <% end %>
 </div>

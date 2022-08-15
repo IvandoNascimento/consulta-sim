@@ -23,14 +23,20 @@
 
   <div>
     <%= form.label :doctor_id, style: "display: block" %>
-    <%= form.text_field :doctor_id %>
+    <%= form.collection_select(:doctor_id, Doctor.all, :id, :name,{:selected => @appointment.doctor_id})%>
   </div>
 
-  <div>
+  <% if params[:id] != nil %>
+    <div>
+      <%= form.label :paciente_id, style: "display: block" %>
+      <%= form.hidden :paciente_id, value: params[:id] %>
+    </div>
+    <% else %>
+
     <%= form.label :paciente_id, style: "display: block" %>
-    <%= form.text_field :paciente_id %>
-  </div>
+    <%= form.collection_select(:paciente_id, Paciente.all, :id, :name,{:selected => @appointment.paciente_id})%>
 
+    <% end %>
   <div>
     <%= form.submit %>
   </div>
