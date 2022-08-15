@@ -7,11 +7,12 @@
   <%= link_to "Back to pacientes", pacientes_path %> |
   <%= button_to "Destroy this paciente", @paciente, method: :delete %>
   <% if @paciente.address != nil %>
-    <%= link_to "Edit this address", edit_paciente_address_path(@paciente.address.id) %> |
+    <%= link_to "Edit this address", edit_paciente_address_path(@paciente.address.id) %>
 
-    <%= button_to "Destroy this address", @address , method: :delete %>
+    <%= button_to "Destroy this address", @address  , method: :delete %>
 
   <% else %>
-    <% link_to "Set address ", new_paciente_address_path(@paciente.id) %>
+    <% link_to "Set address ", new_paciente_address_path(@paciente.id) %> |
    <% end %>
+  <%= link_to "New appointment", new_appointment_path(:id => @paciente.id) %>
 </div>
