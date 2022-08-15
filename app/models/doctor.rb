@@ -3,5 +3,5 @@ class Doctor < ApplicationRecord
 
   validates :name, presence: true, length: {in: 2..30}
   validates :email, presence: true, format: {with: URI::MailTo::EMAIL_REGEXP}
-  validates :speciality, presence: true, length: {in: 2..30}
+  validates :specialty, presence: true, length: {in: 2..30}
 end

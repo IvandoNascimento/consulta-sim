@@ -1,6 +1,7 @@
 class Paciente < ApplicationRecord
   has_one :address, dependent: :destroy
-  has_many :appointment, dependent: :destroy
+
+  has_many :appointments
   validates :name, presence:true, length: {minimum: 5}
   validates :email, presence: true, length: {minimum: 5}
   validates :cpf, presence: true, uniqueness: true
