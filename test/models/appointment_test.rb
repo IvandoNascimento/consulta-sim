@@ -6,8 +6,10 @@ class AppointmentTest < ActiveSupport::TestCase
     assert consulta.save
   end
 
-  test 'criando uma consulta sem medico e paciente' do
+  test 'criando uma consulta invalida' do
+    numero_consulta = Appointment.all.length
     consulta = Appointment.new date: "30/08/2022" ,time: "18"
-    assert consulta.save
+    assert_not consulta.save
+    assert(Appointment.all.length == numero_consulta)
   end
 end

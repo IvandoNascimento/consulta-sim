@@ -8,7 +8,7 @@ class DoctorTest < ActiveSupport::TestCase
   test "criando um medico sem cpf" do
     numero_medico = Medico.all.length
     medico = Doctor.new name:"Ivan do", crm: "9999999" , email: "teste@test.com", specialty: "Cardiologia"
-    assert medico.save
-    assert(Medico.all.length == numero_medico+1)
+    assert_not medico.save
+    assert(Medico.all.length == numero_medico)
   end
 end

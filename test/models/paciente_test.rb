@@ -8,7 +8,9 @@ class PacienteTest < ActiveSupport::TestCase
   end
 
   test 'criando um paciente sem cpf' do
+    numero_paciente = Paciente.all.length
     paciente = Paciente.new name: "Ivan do Nascimento", birthday: "04/03/2001", email: "teste@test.com"
     assert_not paciente
+    assert(Paciente.all.length == numero_paciente)
   end
 end
