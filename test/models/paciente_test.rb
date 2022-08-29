@@ -7,7 +7,7 @@ class PacienteTest < ActiveSupport::TestCase
     assert paciente.save
   end
 
-  test 'criando um paciente sem cpf' do
+  test 'criando um paciente sem cpf,invalido' do
     paciente = Paciente.new name: "Ivan do Nascimento", birthday: "04/03/2001", email: "teste@test.com"
     assert_not paciente
   end
